@@ -1,0 +1,15 @@
+/home/zgt/.rbenv/versions/2.2.2/bin/ruby -r ./siteconf20150924-3754-zo8z8i.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling locker.c
+compiling context.c
+compiling breakpoint.c
+compiling byebug.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20150924-3754-11a4voz/byebug
