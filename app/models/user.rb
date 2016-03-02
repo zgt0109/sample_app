@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { maximum: 6 }
+  validates :password, presence: true, length: { maximum: 6 }, allow_nil: true
 
   class << self
     # 返回指定字符串的哈希摘要
