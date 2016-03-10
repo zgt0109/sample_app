@@ -16,22 +16,17 @@ module SessionsHelper
     user == current_user
   end
 
-  # 返回 cookie 中记忆令牌对应的用户
+  # 返回当前登录的用户 (如果有的话) 返回 cookie 中记忆令牌对应的用户
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
     end
-  end
-
-  # 返回当前登录的用户 (如果有的话)
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   # 如果用户已登录，返回 true，否则返回 false
